@@ -1,0 +1,67 @@
+{% extends 'baseSysListView.html.twig' %}
+
+
+{% block head %}
+	{{ parent() }}
+	<link href="{{ asset('css/cityListStyles.css') }}" rel="stylesheet" />
+{% endblock %}
+
+
+{% block title 'Manage Requests' %}
+
+{% if insertForm is not null%}
+	{% block insertFormLabel 'create a # of new requests:' %}
+{% endif %}
+
+
+{% block listHeadRow %}
+	<div class="checkBoxColumn listHeadRowCell"></div>
+	<div class="idColumn listHeadRowCell">Request #</div>
+	<div class="portersColumn listHeadRowCell">Porters</div>
+	<div class="cityColumn listHeadRowCell">City</div>
+	<div class="addressColumn listHeadRowCell">Address</div>
+	<div class="serviceColumn listHeadRowCell">Service</div>
+	<div class="startDateColumn listHeadRowCell">Start Date</div>
+	<div class="estDurationColumn listHeadRowCell">Est. Duration</div>
+	<div class="detailsColumn listHeadRowCell">Details</div>
+	<div class="editColumn listHeadRowCell">Edit</div>
+{% endblock %}
+
+{% block listRows %}
+	{{ form_start(listForm) }}
+		{% for request in listForm.entities %}
+			<div class="listRow">
+				<div class="checkBoxColumn listRowCell"> {{ form_row(request.checked) }}  </div>
+				<div class="idColumn listRowCell">  {{ request.vars.value.entity.id }}  </div>
+				<div class="portersColumn listRowCell">0 / {{ request.vars.value.entity.portersWanted }}  </div>
+				<div class="cityColumn listRowCell">
+					{% if request.vars.value.entity.city is not null %}
+						{{ request.vars.value.entity.city.nameAndDetails }}
+					{% endif %}
+				</div>
+				<div class="addressColumn listRowCell">  {{ request.vars.value.entity.address }}  </div>
+				<div class="serviceColumn listRowCell">
+					{% if request.vars.value.entity.service is not null %}
+						{{ request.vars.value.entity.service.name }}
+					{% endif %}
+				</div>
+				<div class="startDateColumn listRowCell">  {{ request.vars.value.entity.requestStartEpochString }}  </div>
+				<div class="estDurationColumn listRowCell">  {{ request.vars.value.entity.estDuration }} min</div>
+				<div class="detailsColumn listRowCell">
+					details
+				</div>
+				<div class="editColumn listRowCell">
+					edit
+				</div>
+				{{ form_row(request.id) }}
+				{{ form_row(request.doctrinePath) }}
+				{{ form_row(request.entityClass) }}
+			</div>
+		{% endfor %}
+
+		<div class="listRow">
+			{{ form_row(listForm.listFunction) }}
+			{{ form_row(listForm.delete) }}
+		</div>
+	{{ form_end(listForm) }}
+{% endblock %}

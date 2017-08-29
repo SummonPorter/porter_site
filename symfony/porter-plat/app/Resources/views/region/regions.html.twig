@@ -1,0 +1,58 @@
+{% extends 'baseSysListView.html.twig' %}
+
+
+{% block head %}
+	{{ parent() }}
+	<link href="{{ asset('css/regionListStyles.css') }}" rel="stylesheet" />
+{% endblock %}
+
+
+{% block title 'Manage Regions' %}
+
+
+{% block insertFormLabel 'add a # of new regions:' %}
+
+
+{% block listHeadRow %}
+	<div class="checkBoxColumn listHeadRowCell"></div>
+	<div class="typeNameColumn listHeadRowCell">Region Type</div>
+	<div class="nameColumn listHeadRowCell">Region Name</div>
+	<div class="shortNameColumn listHeadRowCell">Short Name</div>
+	<div class="countryColumn listHeadRowCell">Country</div>
+	<div class="enabledColumn listHeadRowCell">Enabled</div>
+	<div class="detailsColumn listHeadRowCell">Details</div>
+	<div class="editColumn listHeadRowCell">Edit</div>
+{% endblock %}
+
+{% block listRows %}
+	{{ form_start(listForm) }}
+		{% for region in listForm.entities %}
+			<div class="listRow">
+				<div class="checkBoxColumn listRowCell"> {{ form_row(region.checked) }} </div>
+				<div class="typeNameColumn listRowCell">  {{ region.vars.value.entity.typeName }}  </div>
+				<div class="nameColumn listRowCell">  {{ region.vars.value.entity.name }}  </div>
+				<div class="shortNameColumn listRowCell">  {{ region.vars.value.entity.shortName }}  </div>
+				<div class="countryColumn listRowCell">
+					{% if region.vars.value.entity.country is not null %}
+						{{ region.vars.value.entity.country.name }}
+					{% endif %}
+				</div>
+				<div class="enabledColumn listRowCell">  {{ region.vars.value.entity.enabled ? 'Yes':'No' }} </div>
+				<div class="detailsColumn listRowCell">
+					<a href="{{ path('regions_controller_details', {'id_': region.vars.value.entity.id }) }}">details</a>
+				</div>
+				<div class="editColumn listRowCell">
+					<a href="{{ path('regions_controller_update', {'id_': region.vars.value.entity.id }) }}">edit</a>
+				</div>
+				{{ form_row(region.id) }}
+				{{ form_row(region.doctrinePath) }}
+				{{ form_row(region.entityClass) }}
+			</div>
+		{% endfor %}
+
+		<div class="listRow">
+			{{ form_row(listForm.listFunction) }}
+			{{ form_row(listForm.delete) }}
+		</div>
+	{{ form_end(listForm) }}
+{% endblock %}

@@ -1,0 +1,164 @@
+{% extends 'baseSysFullView.html.twig' %}
+
+
+{% block title 'Update New Request' %}
+
+
+{% block boxContainers %}
+	{{ form_start(listForm) }}
+
+		{% for request in listForm.entities %}
+			{{ form_row(request.rId) }}
+			{{ form_row(request.rUpdateStartEpoch) }}
+
+			<div class="boxContainer">
+				<div class="boxHeader">Update New Request #{{ request.vars.value.rId }}</div>
+
+				<div class="boxContentContainer">
+
+					<div class="boxContentHeader">Customer Information</div>
+					<div class="boxContentGroup">
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Email:</div>
+							<div class="boxContentGroupCellValue">
+								{% if customer is not null %}
+									{{ customer.email }}
+								{% endif %}
+							</div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">First Name:</div>
+							<div class="boxContentGroupCellValue">
+								{% if customer is not null %}
+									{{ customer.firstName }}
+								{% endif %}
+							</div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Last Name:</div>
+							<div class="boxContentGroupCellValue">
+								{% if customer is not null %}
+									{{ customer.lastName }}
+								{% endif %}
+							</div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Cell Phone:</div>
+							<div class="boxContentGroupCellValue">
+								{% if customer is not null %}
+									{{ customer.mobilePhone }}
+								{% endif %}
+							</div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Home Phone:</div>
+							<div class="boxContentGroupCellValue">
+								{% if customer is not null %}
+									{{ customer.homePhone }}
+								{% endif %}
+							</div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">City:</div>
+							<div class="boxContentGroupCellValue">
+								{% if customer is not null %}
+									{% if customer.city is not null %}
+										{{ customer.city.nameAndDetails }}
+									{% endif %}
+								{% endif %}
+							</div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Address:</div>
+							<div class="boxContentGroupCellValue">
+								{% if customer is not null %}
+									{{ customer.address }}
+								{% endif %}
+							</div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Mailing:</div>
+							<div class="boxContentGroupCellValue">
+								{% if customer is not null %}
+									{{ customer.mailing }}
+								{% endif %}
+							</div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Credit Card Token:</div>
+							<div class="boxContentGroupCellValue">
+								{% if customer is not null %}
+									{{ customer.creditToken }}
+								{% endif %}
+							</div>
+						</div>
+					</div>
+
+					<div class="boxContentHeader">Request Information</div>
+					<div class="boxContentGroup">
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">requestEntity:</div>
+							<div class="boxContentGroupCellValue">
+								{% if requestEntity is not null %}
+									{% if requestEntity.service is not null %}
+										{{ requestEntity.service.name }}
+									{% endif %}
+								{% endif %}
+							</div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Discount:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(request.rDiscount, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Porters Wanted:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(request.rPortersWanted, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Estimated Duration (min):</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(request.rEstDuration, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Start Date & Time:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(request.rStartEpoch, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Details:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(request.rDetails, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">City:</div>
+							<div class="boxContentGroupCellValue">
+								{% if requestEntity is not null %}
+									{% if requestEntity.city is not null %}
+										{{ requestEntity.city.nameAndDetails }}
+									{% endif %}
+								{% endif %}
+							</div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Address:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(request.rAddress, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+					</div>
+
+					<div class="boxContentHeader">Porters Assignments</div>
+					<div class="boxContentGroup">
+
+						{% for assignment in request.rPorterAssignments %}
+							<div class="boxContentGroupCell">
+								<div class="boxContentGroupCellLabel">Porter:</div>
+								<div class="boxContentGroupCellValue">  {{ form_row(assignment, {'attr': {'class': 'formElement'}}) }} </div>
+							</div>
+						{% endfor %}
+							
+					</div>
+					
+				</div>
+
+			</div>
+
+		{% endfor %}
+	{{ form_row(listForm.listFunction) }}
+	{{ form_end(listForm) }}
+{% endblock %}

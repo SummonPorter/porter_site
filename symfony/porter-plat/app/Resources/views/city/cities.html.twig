@@ -1,0 +1,60 @@
+{% extends 'baseSysListView.html.twig' %}
+
+
+{% block head %}
+	{{ parent() }}
+	<link href="{{ asset('css/cityListStyles.css') }}" rel="stylesheet" />
+{% endblock %}
+
+
+{% block title 'Manage Cities' %}
+
+
+{% block insertFormLabel 'add a # of new cities:' %}
+
+
+{% block listHeadRow %}
+	<div class="checkBoxColumn listHeadRowCell"></div>
+	<div class="nameColumn listHeadRowCell">City Name</div>
+	<div class="enabledColumn listHeadRowCell">Enabled</div>
+	<div class="countryColumn listHeadRowCell">Country</div>
+	<div class="regionColumn listHeadRowCell">Region</div>
+	<div class="detailsColumn listHeadRowCell">Details</div>
+	<div class="editColumn listHeadRowCell">Edit</div>
+{% endblock %}
+
+{% block listRows %}
+	{{ form_start(listForm) }}
+		{% for city in listForm.entities %}
+			<div class="listRow">
+				<div class="checkBoxColumn listRowCell"> {{ form_row(city.checked) }}  </div>
+				<div class="nameColumn listRowCell">  {{ city.vars.value.entity.name }}  </div>
+				<div class="enabledColumn listRowCell">  {{ city.vars.value.entity.enabled ? 'Yes':'No' }}  </div>
+				<div class="countryColumn listRowCell">
+					{% if city.vars.value.entity.country is not null %}
+						{{ city.vars.value.entity.country.name }}
+					{% endif %}
+				</div>
+				<div class="regionColumn listRowCell">
+					{% if city.vars.value.entity.region is not null %}
+						{{ city.vars.value.entity.region.name }}
+					{% endif %}
+				</div>
+				<div class="detailsColumn listRowCell">
+					<a href="{{ path('cities_controller_details', {'id_': city.vars.value.entity.id }) }}">details</a>
+				</div>
+				<div class="editColumn listRowCell">
+					<a href="{{ path('cities_controller_update', {'id_': city.vars.value.entity.id }) }}">edit</a>
+				</div>
+				{{ form_row(city.id) }}
+				{{ form_row(city.doctrinePath) }}
+				{{ form_row(city.entityClass) }}
+			</div>
+		{% endfor %}
+
+		<div class="listRow">
+			{{ form_row(listForm.listFunction) }}
+			{{ form_row(listForm.delete) }}
+		</div>
+	{{ form_end(listForm) }}
+{% endblock %}

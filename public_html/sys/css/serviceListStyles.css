@@ -1,0 +1,63 @@
+.checkBoxColumn {
+	min-width: 30px;
+	width: 30px;
+}
+
+.nameColumn {
+	min-width: 100px;
+	width: 20%;
+}
+
+.feeRateColumn {
+	min-width: 85px;
+	width: 12%;
+}
+
+.feeColumn {
+	min-width: 85px;
+	width: 12%;
+}
+
+.baseFeeColumn {
+	min-width: 85px;
+	width: 12%;
+}
+
+.porterPayColumn {
+	min-width: 100px;
+	width: 12%;
+}
+
+.groupColumn {
+	min-width: 100px;
+	width: 20%;
+}
+
+.enabledColumn {
+	min-width: 70px;
+	width: 7%;
+}
+
+.detailsColumn {
+	min-width: 70px;
+	width: 2.5%;
+}
+
+.editColumn {
+	min-width: 70px;
+	width: 2.5%;
+}
+
+.formElement {
+	margin: 0px;
+	padding: 0px;
+	min-width: 80px;
+	/* Firefox */
+	width: -moz-calc(100% - 20px);
+	/* WebKit */
+	width: -webkit-calc(100% - 20px);
+	/* Opera */
+	width: -o-calc(100% - 20px);
+	/* Standard */
+	width: calc(100% - 20px);
+}

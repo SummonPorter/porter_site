@@ -1,0 +1,57 @@
+{% extends 'baseSysFullView.html.twig' %}
+
+
+{% block title 'Update Service Groups' %}
+
+
+{% block boxContainers %}
+	{{ form_start(listForm) }}
+
+		{% for serviceGroup in listForm.entities %}
+			{{ form_row(serviceGroup.id) }}
+
+			<div class="boxContainer">
+				<div class="boxHeader">Update Service Group #{{ serviceGroup.vars.value.id }}</div>
+
+				<div class="boxContentContainer">
+
+					<div class="boxContentHeader">Details</div>
+					<div class="boxContentGroup">
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Name:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(serviceGroup.name, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Description:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(serviceGroup.description, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+					</div>
+					
+					<div class="boxContentHeader">Images</div>
+					<div class="boxContentGroup">
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Web Image URL:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(serviceGroup.webImage, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">App Image URL:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(serviceGroup.appImage, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+					</div>
+
+					<div class="boxContentHeader">Misc</div>
+					<div class="boxContentGroup">
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Enabled:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(serviceGroup.enabled, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+					</div>	
+					
+				</div>
+
+			</div>
+
+		{% endfor %}
+	{{ form_row(listForm.listFunction) }}
+	{{ form_end(listForm) }}
+{% endblock %}

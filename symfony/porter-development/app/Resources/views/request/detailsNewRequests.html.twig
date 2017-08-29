@@ -1,0 +1,130 @@
+{% extends 'baseSysFullView.html.twig' %}
+
+
+{% block title 'New Request Details' %}
+
+
+{% block boxContainers %}
+	{{ form_start(processForm) }}
+		
+	<div class="boxContainer">
+		<div class="boxHeader">Request # {{ request.id }}</div>
+
+		<div class="boxContentContainer">
+
+			<div class="boxContentHeader">Customer Information</div>
+			<div class="boxContentGroup">
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Email:</div>
+					<div class="boxContentGroupCellValue">  {{ request.customer.email }} </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">First Name:</div>
+					<div class="boxContentGroupCellValue">  {{ request.customer.firstName }} </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Last Name:</div>
+					<div class="boxContentGroupCellValue">  {{ request.customer.lastName }} </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Cell Phone:</div>
+					<div class="boxContentGroupCellValue">  {{ request.customer.mobilePhone }} </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Home Phone:</div>
+					<div class="boxContentGroupCellValue">  {{ request.customer.homePhone }} </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">City:</div>
+					<div class="boxContentGroupCellValue">
+						{% if request.customer.city is not null %}
+							{{ request.customer.city.nameAndDetails }}
+						{% endif %}
+					</div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Address:</div>
+					<div class="boxContentGroupCellValue">  {{ request.customer.address }} </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Mailing:</div>
+					<div class="boxContentGroupCellValue">  {{ request.customer.mailing }} </div>
+				</div>
+			</div>
+
+			<div class="boxContentHeader">Request Information</div>
+			<div class="boxContentGroup">
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Service:</div>
+					<div class="boxContentGroupCellValue">
+						{% if request.service is not null %}
+							{{ request.service.name }}
+						{% endif %}
+					</div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Discount:</div>
+					<div class="boxContentGroupCellValue">
+						{% if request.discount is not null %}
+							{{ request.discount.name }}
+						{% endif %}
+					</div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Porters Wanted:</div>
+					<div class="boxContentGroupCellValue">  {{ request.portersWanted }} </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Estimated Duration:</div>
+					<div class="boxContentGroupCellValue">  {{ request.estDuration }} min </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Start Date & Time:</div>
+					<div class="boxContentGroupCellValue">  {{ request.requestStartDateTime|date('Y-m-d H:i') }} </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Details:</div>
+					<div class="boxContentGroupCellValue">  {{ request.details }} </div>
+				</div>
+			</div>
+
+			{% if request.addresses is not empty %}
+				{% for address in request.addresses %}
+					<div class="boxContentHeader">Request Address</div>
+					<div class="boxContentGroup">
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">City:</div>
+							<div class="boxContentGroupCellValue">  {{ address.city.nameAndDetails }}  </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Address:</div>
+							<div class="boxContentGroupCellValue">  {{ address.address }}  </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Mailing:</div>
+							<div class="boxContentGroupCellValue">  {{ address.mailing }}  </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Unit:</div>
+							<div class="boxContentGroupCellValue">  {{ address.unit }}  </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Context:</div>
+							<div class="boxContentGroupCellValue">  {{ address.context }}  </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Stepping:</div>
+							<div class="boxContentGroupCellValue">  {{ address.stepping }}  </div>
+						</div>
+					</div>
+				{% endfor %}
+			{% endif %}
+			
+		</div>
+
+	</div>
+
+	{{ form_row(processForm.requestId) }}
+	{{ form_row(processForm.newState) }}
+	{{ form_end(processForm) }}
+{% endblock %}

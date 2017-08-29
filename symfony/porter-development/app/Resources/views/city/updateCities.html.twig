@@ -1,0 +1,65 @@
+{% extends 'baseSysFullView.html.twig' %}
+
+
+{% block title 'Update Cities' %}
+
+
+{% block boxContainers %}
+	{{ form_start(listForm) }}
+
+		{% for city in listForm.entities %}
+			{{ form_row(city.id) }}
+
+			<div class="boxContainer">
+				<div class="boxHeader">Update City #{{ city.vars.value.id }}</div>
+
+				<div class="boxContentContainer">
+
+					<div class="boxContentHeader">Details</div>
+					<div class="boxContentGroup">
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Name:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(city.name, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+					</div>
+
+					<div class="boxContentHeader">Location</div>
+					<div class="boxContentGroup">
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Country:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(city.country, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Region:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(city.region, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Latitude (Decimal):</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(city.latitude, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Longitude (Decimal):</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(city.longitude, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+					</div>
+
+					<div class="boxContentHeader">Misc</div>
+					<div class="boxContentGroup">
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Timezone:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(city.timezone, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Enabled:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(city.enabled, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+					</div>	
+					
+				</div>
+
+			</div>
+
+		{% endfor %}
+	{{ form_row(listForm.listFunction) }}
+	{{ form_end(listForm) }}
+{% endblock %}

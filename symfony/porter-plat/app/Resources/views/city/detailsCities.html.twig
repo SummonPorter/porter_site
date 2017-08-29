@@ -1,0 +1,66 @@
+{% extends 'baseSysFullView.html.twig' %}
+
+
+{% block title 'City Details' %}
+
+
+{% block content %}
+
+	<div class="boxContainer">
+		<div class="boxHeader">City # {{ city.id }}</div>
+
+		<div class="boxContentContainer">
+
+			<div class="boxContentHeader">Details</div>
+			<div class="boxContentGroup">
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Name:</div>
+					<div class="boxContentGroupCellValue">  {{ city.name }}  </div>
+				</div>
+			</div>
+
+			<div class="boxContentHeader">Location</div>
+			<div class="boxContentGroup">
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Country:</div>
+					<div class="boxContentGroupCellValue">
+						{% if city.country is not null %}
+							<a href="{{ path('countries_controller_details', {'id_': city.country.id }) }}">  {{ city.country.name }}  </a>
+						{% endif %}
+					</div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Region:</div>
+					<div class="boxContentGroupCellValue">
+						{% if city.region is not null %}
+							<a href="{{ path('regions_controller_details', {'id_': city.region.id }) }}">  {{ city.region.name }}  </a>
+						{% endif %}
+					</div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Latitude (Decimal):</div>
+					<div class="boxContentGroupCellValue">  {{ city.latitude|number_format(7, '.', ',') }}  </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Longitude (Decimal):</div>
+					<div class="boxContentGroupCellValue">  {{ city.longitude|number_format(7, '.', ',') }}  </div>
+				</div>
+			</div>
+
+			<div class="boxContentHeader">Misc</div>
+			<div class="boxContentGroup">
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Timezone:</div>
+					<div class="boxContentGroupCellValue">  {{ city.timezone }}  </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Enabled:</div>
+					<div class="boxContentGroupCellValue">  {{ city.enabled ? 'Yes':'No' }}  </div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+{% endblock %}

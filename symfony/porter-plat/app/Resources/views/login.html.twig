@@ -1,0 +1,55 @@
+{% extends 'baseSysView.html.twig' %}
+
+
+{% block head %}
+	{{ parent() }}
+	<link href="{{ asset('css/loginStyles.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block title 'System Login' %}
+
+
+{% block content %}
+	<form action="{{ path('login_controller_main') }}" method="post">
+		<div id="loginContainer">
+			
+			{% if error is not null %}
+				<div class="loginRow loginError">Login failed. Please try again.</div>
+			{% endif %}
+
+			{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+				<div class="loginRow loginSuccess">
+					Logged in as {{ app.user.username }}.{% if lastLoginDateTime is not null %} Last login {{ lastLoginDateTime }} {% endif %}
+					{% if lastLoginAddress is not null %}<br />from {{ lastLoginAddress }} {% endif %}
+					<br /><a href="{{ path('requests_controller_main', {'filter_': 'new' }) }}">continue</a>
+				</div>
+			
+			{% else %}
+
+				<div class="loginRow loginRowFlex">
+					<div class="loginRowLabel">username</div>
+					<div class="loginRowForm">
+						<input type="text" class="loginFormField" id="username" name="_username" value="{{ lastUsername }}" />
+					</div>
+				</div>
+				<div class="loginRow loginRowFlex">
+					<div class="loginRowLabel">password</div>
+					<div class="loginRowForm">
+						<input type="password" class="loginFormField" id="password" name="_password" />
+					</div>
+				</div>
+
+				<div class="loginRow loginRowFlex">
+					<div class="loginRowLeft">
+						remember me <input type="checkbox" id="loginFormRemember" name="_remember_me" />
+					</div>
+					<div class="loginRowRight">
+						<button type="submit" class="loginFormButton">login</button>
+					</div>
+				</div>
+
+			{% endif %}
+		</div>
+	</form>
+{% endblock %}

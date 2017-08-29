@@ -1,0 +1,104 @@
+{% extends 'baseSysFullView.html.twig' %}
+
+
+{% block title 'Add Requests' %}
+
+
+{% block boxContainers %}
+	{{ form_start(listForm) }}
+
+		{% for request in listForm.entities %}
+
+			<div class="boxContainer">
+				<div class="boxHeader">New Request</div>
+
+				<div class="boxContentContainer">
+
+					<div class="boxContentHeader">Customer Information</div>
+					<div class="boxContentGroup">
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Email:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(request.cEmail, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">First Name:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(request.cFirstName, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Last Name:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(request.cLastName, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Cell Phone:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(request.cMobilePhone, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Home Phone:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(request.cHomePhone, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">City:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(request.cCity, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Address:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(request.cAddress, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Mailing:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(request.cMailing, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Credit Card Number:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(request.ccNum, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Credit Card Name:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(request.ccName, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Credit Card Expiration:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(request.ccExp, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Credit Card Security:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(request.ccCode, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+					</div>
+
+					<div class="boxContentHeader">Request Information</div>
+					<div class="boxContentGroup">
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Service:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(request.rService, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Discount:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(request.rDiscount, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Porters Wanted:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(request.rPortersWanted, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Estimated Duration (min):</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(request.rEstDuration, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Start Date & Time:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(request.rStartDateTime, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Details:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(request.rDetails, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+					</div>
+					
+				</div>
+
+			</div>
+
+		{% endfor %}
+	{{ form_row(listForm.listFunction) }}
+	{{ form_end(listForm) }}
+{% endblock %}

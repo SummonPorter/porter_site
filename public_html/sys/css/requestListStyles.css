@@ -1,0 +1,49 @@
+.checkBoxColumn {
+	min-width: 30px;
+	width: 30px;
+}
+
+.idColumn {
+	min-width: 80px;
+	width: 10%;
+}
+
+.portersColumn {
+	min-width: 70px;
+	width: 10%;
+}
+
+.cityColumn {
+	min-width: 100px;
+	width: 20%;
+}
+
+.addressColumn {
+	min-width: 100px;
+	width: 15%;
+}
+
+.serviceColumn {
+	min-width: 100px;
+	width: 15%;
+}
+
+.startDateColumn {
+	min-width: 100px;
+	width: 15%;
+}
+
+.estDurationColumn {
+	min-width: 100px;
+	width: 10%;
+}
+
+.detailsColumn {
+	min-width: 70px;
+	width: 2.5%;
+}
+
+.editColumn {
+	min-width: 70px;
+	width: 2.5%;
+}

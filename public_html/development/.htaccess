@@ -1,0 +1,13 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule (.*) router.php?/$1 [L,QSA,NC]
+
+</IfModule>
+
+AddHandler application/x-httpd-php70 .php .php5 .php4 .php3
+AuthType Basic
+AuthName "development"
+AuthUserFile "/home/pocketpo/.htpasswds/public_html/development/passwd"
+require valid-user

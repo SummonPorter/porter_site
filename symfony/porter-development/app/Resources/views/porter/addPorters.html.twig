@@ -1,0 +1,140 @@
+{% extends 'baseSysFullView.html.twig' %}
+
+
+{% block title 'Add Porters' %}
+
+
+{% block boxContainers %}
+	{{ form_start(listForm) }}
+
+		{% for profile in listForm.entities %}
+			{{ form_row(profile.id) }}
+
+			<div class="boxContainer">
+				<div class="boxHeader">New Profile</div>
+
+				<div class="boxContentContainer">
+
+					<div class="boxContentHeader">Bio</div>
+					<div class="boxContentGroup">
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">First Name:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(profile.firstName, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Last Name:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(profile.lastName, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Date of Birth:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(profile.birthDate, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+					</div>
+
+					<div class="boxContentHeader">Contact</div>
+					<div class="boxContentGroup">
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Cell Phone:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(profile.mobilePhone, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Home Phone:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(profile.homePhone, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Email:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(profile.email, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+					</div>
+
+					<div class="boxContentHeader">Location</div>
+					<div class="boxContentGroup">
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">City:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(profile.city, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Address:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(profile.address, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Mailing:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(profile.mailing, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+					</div>
+
+					{% if profile.vehicles.vars.value %}
+
+						{% for vehicle in profile.vehicles %}
+							<div class="boxContentHeader">Vehicle Access</div>
+							<div class="boxContentGroup">
+								<div class="boxContentGroupCell">
+									<div class="boxContentGroupCellLabel">  Vehicle Type  </div>
+									<div class="boxContentGroupCellValue">  {{ form_row(vehicle.vehicleType, {'attr': {'class': 'formElement'}}) }} </div>
+								</div>
+								<div class="boxContentGroupCell">
+									<div class="boxContentGroupCellLabel">  Personal Vehicle  </div>
+									<div class="boxContentGroupCellValue">  {{ form_row(vehicle.personal, {'attr': {'class': 'formElement'}}) }} </div>
+								</div>
+								{{ form_row(vehicle.id) }}
+								{{ form_row(vehicle.porterId) }}
+							</div>
+						{% endfor %}
+
+					{% else %}
+
+						<div class="hiddenContent">
+							{{ form_row(profile.vehicles) }}
+						</div>
+
+					{% endif %}
+
+					<div class="boxContentHeader">Misc</div>
+					<div class="boxContentGroup">
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Background Ref:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(profile.backgroundRef, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Signup Date:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(profile.signupEpoch, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Active:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(profile.active, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+					</div>
+
+					{% if profile.serviceInterestGrades.vars.value %}
+
+						<div class="boxContentHeader">Service Interests</div>
+						<div class="boxContentGroup">
+
+							{% for interest in profile.serviceInterestGrades %}
+								<div class="boxContentGroupCell">
+									<div class="boxContentGroupCellLabel">  {{ interest.service.vars.value }}  </div>
+									<div class="boxContentGroupCellValue">  {{ form_row(interest.interestGrade, {'attr': {'class': 'formElement'}}) }} </div>
+									{{ form_row(interest.serviceId) }}
+									{{ form_row(interest.porterId) }}
+									{{ form_row(interest.service) }}
+								</div>
+							{% endfor %}
+
+						</div>
+
+					{% else %}
+
+						<div class="hiddenContent">
+							{{ form_row(profile.serviceInterestGrades) }}
+						</div>
+
+					{% endif %}
+					
+				</div>
+
+			</div>
+
+		{% endfor %}
+	{{ form_row(listForm.listFunction) }}
+	{{ form_end(listForm) }}
+{% endblock %}

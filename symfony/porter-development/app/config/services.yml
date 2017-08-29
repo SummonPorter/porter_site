@@ -1,0 +1,59 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+
+services:
+#    service_name:
+#        class: AppBundle\Directory\ClassName
+#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    app.database:
+        class:      AppBundle\Services\Database
+        arguments:  ['@doctrine']
+    app.cms_operations:
+        class:      AppBundle\Services\CmsOperations
+        arguments:  ['@router', '@doctrine', '@form.factory', '@app.request_operations', '@app.billing_operations', '@app.database', '@app.math_operations', '@app.security_operations', '@logger']
+    app.form_handler_factory:
+        class:      AppBundle\Services\FormHandlerFactory
+    app.customer_provider:
+        class:      AppBundle\Security\CustomerProvider
+        arguments:  ['@doctrine', '@logger']
+    app.customer_handler:
+        class:      AppBundle\Security\CustomerHandler
+        arguments:  ['@doctrine', '@logger', '@router']
+    app.customer_authenticator:
+        class:      AppBundle\Security\CustomerAuthenticator
+        arguments:  ['@doctrine', '@logger', '@router', '@security.password_encoder']
+    app.internal_users_provider:
+        class:      AppBundle\Security\InternalUsersProvider
+        arguments:  ['@doctrine', '@logger']
+    app.internal_users_handler:
+        class:      AppBundle\Security\InternalUsersHandler
+        arguments:  ['@doctrine', '@logger', '@router']
+    app.math_operations:
+        class:      AppBundle\Services\MathOperations
+    app.time_operations:
+        class:      AppBundle\Services\TimeOperations
+    app.billing_operations:
+        class:      AppBundle\Services\BillingOperations
+        arguments: ['%kernel.debug%', '%kernel.environment%', '@logger']
+    app.request_operations:
+        class:      AppBundle\Services\RequestOperations
+        arguments:  ['@app.database', '@app.math_operations', '@app.time_operations', '@app.mandrill_operations', '@doctrine', '@router', '@logger']
+    app.mailchimp_operations:
+        class:      AppBundle\Services\MailchimpOperations
+    app.mandrill_operations:
+        class:      AppBundle\Services\MandrillOperations
+    app.active_update_request_entity_type:
+        class:      AppBundle\Form\Request\ActiveUpdateRequestEntityType
+        arguments:  ['@app.request_operations', '@app.database']
+        tags:
+            - { name: form.type }
+    app.porter_request_activity_summary_update_type:
+        class:      AppBundle\Form\Request\PorterRequestActivitySummaryUpdateType
+        arguments:  ['@app.request_operations', '@app.database']
+        tags:
+            - { name: form.type }
+    app.security_operations:
+        class:      AppBundle\Security\SecurityOperations
+        arguments:  ['@app.database', '@doctrine', '@logger']

@@ -1,0 +1,89 @@
+{% extends 'baseSysFullView.html.twig' %}
+
+
+{% block title 'Update Discounts' %}
+
+
+{% block boxContainers %}
+	{{ form_start(listForm) }}
+	
+		{% for discount in listForm.entities %}
+			{{ form_row(discount.id) }}
+
+			<div class="boxContainer">
+				<div class="boxHeader">Update Discount #{{ discount.vars.value.id }}</div>
+
+				<div class="boxContentContainer">
+
+					<div class="boxContentHeader">Details</div>
+					<div class="boxContentGroup">
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Name:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(discount.name, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Code:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(discount.code, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Description:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(discount.description, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+					</div>
+
+					<div class="boxContentHeader">Duration</div>
+					<div class="boxContentGroup">
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Valid Starting:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(discount.startEpoch, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Valid Ending:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(discount.endEpoch, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+					</div>
+
+					<div class="boxContentHeader">Discount</div>
+					<div class="boxContentGroup">
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Type:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(discount.discountType, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Amount:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(discount.discount, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+					</div>
+
+					<div class="boxContentHeader">Affected Services</div>
+					<div class="boxContentGroup">
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Services:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(discount.whitelistServices, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+					</div>
+
+					<div class="boxContentHeader">Blacklists</div>
+					<div class="boxContentGroup">
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Countries:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(discount.blacklistCountries, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Regions:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(discount.blacklistRegions, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Cities:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(discount.blacklistCities, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+					</div>
+					
+				</div>
+
+			</div>
+
+		{% endfor %}
+	{{ form_row(listForm.listFunction) }}
+	{{ form_end(listForm) }}
+{% endblock %}

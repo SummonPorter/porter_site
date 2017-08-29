@@ -1,0 +1,62 @@
+{% extends 'baseSysListView.html.twig' %}
+
+
+{% block head %}
+	{{ parent() }}
+	<link href="{{ asset('css/discountListStyles.css') }}" rel="stylesheet" />
+{% endblock %}
+
+
+{% block title 'Manage Discounts' %}
+
+
+{% block insertFormLabel 'add a # of new discounts:' %}
+
+
+{% block listHeadRow %}
+	<div class="checkBoxColumn listHeadRowCell"></div>
+	<div class="codeColumn listHeadRowCell">Discount Code</div>
+	<div class="nameColumn listHeadRowCell">Discount Name</div>
+	<div class="startDateTimeColumn listHeadRowCell">Starts UTC</div>
+	<div class="endDateTimeColumn listHeadRowCell">Ends UTC</div>
+	<div class="discountColumn listHeadRowCell">Discount</div>
+	<div class="configColumn listHeadRowCell">Services Included</div>
+	<div class="detailsColumn listHeadRowCell">Details</div>
+	<div class="editColumn listHeadRowCell">Edit</div>
+{% endblock %}
+
+{% block listRows %}
+	{{ form_start(listForm) }}
+		{% for discount in listForm.entities %}
+			<div class="listRow">
+				<div class="checkBoxColumn listRowCell"> {{ form_row(discount.checked) }} </div>
+				<div class="codeColumn listRowCell">  {{ discount.vars.value.entity.code }}  </div>
+				<div class="nameColumn listRowCell">  {{ discount.vars.value.entity.name }}  </div>
+				<div class="startDateTimeColumn listRowCell">  {{ discount.vars.value.entity.startEpochString }}  </div>
+				<div class="endDateTimeColumn listRowCell">  {{ discount.vars.value.entity.endEpochString }}  </div>
+				<div class="discountColumn listRowCell">
+					{% if discount.vars.value.entity.percentage %}
+						{{ discount.vars.value.entity.discount|number_format(2, '.', ',') }}%
+					{% elseif discount.vars.value.entity.flat %}
+						${{ discount.vars.value.entity.discount|number_format(2, '.', ',') }} CAD
+					{% endif %}
+				</div>
+				<div class="configColumn listRowCell">  {{ discount.vars.value.entity.whitelistServicesString|striptags('<br>')|raw  }}  </div>
+				<div class="detailsColumn listRowCell">
+					<a href="{{ path('discounts_controller_details', {'id_': discount.vars.value.entity.id }) }}">details</a>
+				</div>
+				<div class="editColumn listRowCell">
+					<a href="{{ path('discounts_controller_update', {'id_': discount.vars.value.entity.id }) }}">edit</a>
+				</div>
+				{{ form_row(discount.id) }}
+				{{ form_row(discount.doctrinePath) }}
+				{{ form_row(discount.entityClass) }}
+			</div>
+		{% endfor %}
+
+		<div class="listRow">
+			{{ form_row(listForm.listFunction) }}
+			{{ form_row(listForm.delete) }}
+		</div>
+	{{ form_end(listForm) }}
+{% endblock %}

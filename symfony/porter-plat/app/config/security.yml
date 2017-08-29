@@ -1,0 +1,60 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/book/security.html
+security:
+
+    encoders:
+        AppBundle\Entity\InternalUsersDB:
+            algorithm: bcrypt
+            cost: 14
+    
+    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    providers:
+        internal_users:
+            id: app.internal_users_provider
+           # entity:
+           #     class: AppBundle:InternalUsersDB
+           #     property: username
+        in_memory:
+            memory: ~
+    
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        
+        internal:
+            anonymous: ~
+            provider: internal_users
+            form_login:
+                login_path: login_controller_main
+                check_path: login_controller_main
+                default_target_path: login_controller_main
+                always_use_default_target_path: true
+                success_handler: app.internal_users_handler
+                failure_handler: app.internal_users_handler
+            remember_me:
+                secret: '%secret%'
+                lifetime: 604800
+                path: /
+            logout:
+                path: /logout
+                target: /login
+                success_handler: app.internal_users_handler
+        
+       # default:
+       #     anonymous: ~
+       #     http_basic: ~
+       #     provider: internal_users
+            # activate different ways to authenticate
+
+            # http_basic: ~
+            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
+
+            # form_login: ~
+            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+
+    access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/internal/services/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ~, roles: [ROLE_ADMIN, ROLE_OPS, ROLE_OFFICER] }

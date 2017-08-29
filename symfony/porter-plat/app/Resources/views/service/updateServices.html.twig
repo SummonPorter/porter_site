@@ -1,0 +1,102 @@
+{% extends 'baseSysFullView.html.twig' %}
+
+
+{% block title 'Update Services' %}
+
+
+{% block boxContainers %}
+	{{ form_start(listForm) }}
+
+		{% for service in listForm.entities %}
+			{{ form_row(service.id) }}
+
+			<div class="boxContainer">
+				<div class="boxHeader">Update Service #{{ service.vars.value.id }}</div>
+
+					<div class="boxContentContainer">
+
+						<div class="boxContentHeader">Details</div>
+						<div class="boxContentGroup">
+							<div class="boxContentGroupCell">
+								<div class="boxContentGroupCellLabel">Name:</div>
+								<div class="boxContentGroupCellValue">  {{ form_row(service.name, {'attr': {'class': 'formElement'}}) }} </div>
+							</div>
+							<div class="boxContentGroupCell">
+								<div class="boxContentGroupCellLabel">Description:</div>
+								<div class="boxContentGroupCellValue">  {{ form_row(service.description, {'attr': {'class': 'formElement'}}) }} </div>
+							</div>
+							<div class="boxContentGroupCell">
+								<div class="boxContentGroupCellLabel">Address Count:</div>
+								<div class="boxContentGroupCellValue">  {{ form_row(service.addressCount, {'attr': {'class': 'formElement'}}) }} </div>
+							</div>
+							<div class="boxContentGroupCell">
+								<div class="boxContentGroupCellLabel">Service Group:</div>
+								<div class="boxContentGroupCellValue">  {{ form_row(service.group, {'attr': {'class': 'formElement'}}) }} </div>
+							</div>
+						</div>
+
+						<div class="boxContentHeader">Money</div>
+						<div class="boxContentGroup">
+							<div class="boxContentGroupCell">
+								<div class="boxContentGroupCellLabel">Fee Rate:</div>
+								<div class="boxContentGroupCellValue">  {{ form_row(service.feeRate, {'attr': {'class': 'formElement'}}) }} </div>
+							</div>
+							<div class="boxContentGroupCell">
+								<div class="boxContentGroupCellLabel">Fee:</div>
+								<div class="boxContentGroupCellValue">  {{ form_row(service.fee, {'attr': {'class': 'formElement'}}) }} </div>
+							</div>
+							<div class="boxContentGroupCell">
+								<div class="boxContentGroupCellLabel">Base Fee:</div>
+								<div class="boxContentGroupCellValue">  {{ form_row(service.baseFee, {'attr': {'class': 'formElement'}}) }} </div>
+							</div>
+							<div class="boxContentGroupCell">
+								<div class="boxContentGroupCellLabel">Porter Pay:</div>
+								<div class="boxContentGroupCellValue">  {{ form_row(service.pay, {'attr': {'class': 'formElement'}}) }} </div>
+							</div>
+							<div class="boxContentGroupCell">
+								<div class="boxContentGroupCellLabel">Trust Fee (percentage):</div>
+								<div class="boxContentGroupCellValue">  {{ form_row(service.trustFee, {'attr': {'class': 'formElement'}}) }} </div>
+							</div>
+							<div class="boxContentGroupCell">
+								<div class="boxContentGroupCellLabel">Default Estimated Duration:</div>
+								<div class="boxContentGroupCellValue">  {{ form_row(service.defaultEstDuration, {'attr': {'class': 'formElement'}}) }} </div>
+							</div>
+						</div>
+
+						<div class="boxContentHeader">Images</div>
+						<div class="boxContentGroup">
+							<div class="boxContentGroupCell">
+								<div class="boxContentGroupCellLabel">Web Header URL:</div>
+								<div class="boxContentGroupCellValue">  {{ form_row(service.webHeader, {'attr': {'class': 'formElement'}}) }} </div>
+							</div>
+							<div class="boxContentGroupCell">
+								<div class="boxContentGroupCellLabel">Web Mobile Header URL:</div>
+								<div class="boxContentGroupCellValue">  {{ form_row(service.webMobileHeader, {'attr': {'class': 'formElement'}}) }} </div>
+							</div>
+							<div class="boxContentGroupCell">
+								<div class="boxContentGroupCellLabel">Web Icon URL:</div>
+								<div class="boxContentGroupCellValue">  {{ form_row(service.webIcon, {'attr': {'class': 'formElement'}}) }} </div>
+							</div>
+							<div class="boxContentGroupCell">
+								<div class="boxContentGroupCellLabel">App Image URL:</div>
+								<div class="boxContentGroupCellValue">  {{ form_row(service.appImage, {'attr': {'class': 'formElement'}}) }} </div>
+							</div>
+						</div>
+
+						<div class="boxContentHeader">Misc</div>
+						<div class="boxContentGroup">
+							<div class="boxContentGroupCell">
+								<div class="boxContentGroupCellLabel">Enabled:</div>
+								<div class="boxContentGroupCellValue">  {{ form_row(service.enabled, {'attr': {'class': 'formElement'}}) }} </div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+
+		{% endfor %}
+	{{ form_row(listForm.listFunction) }}
+	{{ form_end(listForm) }}
+{% endblock %}

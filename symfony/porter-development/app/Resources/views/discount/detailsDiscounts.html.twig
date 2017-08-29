@@ -1,0 +1,92 @@
+{% extends 'baseSysFullView.html.twig' %}
+
+
+{% block title 'Discount Details' %}
+
+
+{% block content %}
+		
+	<div class="boxContainer">
+		<div class="boxHeader">Discount # {{ discount.id }}</div>
+
+		<div class="boxContentContainer">
+
+			<div class="boxContentHeader">Details</div>
+			<div class="boxContentGroup">
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Name:</div>
+					<div class="boxContentGroupCellValue">  {{ discount.name }}  </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Code:</div>
+					<div class="boxContentGroupCellValue">  {{ discount.code }}  </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Description:</div>
+					<div class="boxContentGroupCellValue">  {{ discount.name }}  </div>
+				</div>
+			</div>
+
+			<div class="boxContentHeader">Times</div>
+			<div class="boxContentGroup">
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Created At UTC:</div>
+					<div class="boxContentGroupCellValue">  {{ discount.createdEpochString }}  </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Starts UTC:</div>
+					<div class="boxContentGroupCellValue">  {{ discount.startEpochString }}  </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Ends UTC:</div>
+					<div class="boxContentGroupCellValue">  {{ discount.startEpochString }}  </div>
+				</div>
+			</div>
+
+			<div class="boxContentHeader">Discount</div>
+			<div class="boxContentGroup">
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Type:</div>
+					<div class="boxContentGroupCellValue">  {{ discount.discountType }}  </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Amount:</div>
+					<div class="boxContentGroupCellValue">
+						{% if discount.percentage %}
+							{{ discount.discount|number_format(2, '.', ',') }}%
+						{% elseif discount.flat %}
+							${{ discount.discount|number_format(2, '.', ',') }} CAD
+						{% endif %}
+					</div>
+				</div>
+			</div>
+
+			<div class="boxContentHeader">Affected Services</div>
+			<div class="boxContentGroup">
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Services:</div>
+					<div class="boxContentGroupCellValue">  {{ discount.whitelistServicesString|striptags('<br>')|raw }}  </div>
+				</div>
+			</div>
+
+			<div class="boxContentHeader">Blacklists</div>
+			<div class="boxContentGroup">
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Countries:</div>
+					<div class="boxContentGroupCellValue">  {{ discount.blacklistCountriesString|striptags('<br>')|raw }}  </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Regions:</div>
+					<div class="boxContentGroupCellValue">  {{ discount.blacklistRegionsString|striptags('<br>')|raw }}  </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Cities:</div>
+					<div class="boxContentGroupCellValue">  {{ discount.blacklistCitiesString|striptags('<br>')|raw }}  </div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+{% endblock %}

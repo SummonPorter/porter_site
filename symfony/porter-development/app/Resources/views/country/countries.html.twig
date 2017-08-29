@@ -1,0 +1,50 @@
+{% extends 'baseSysListView.html.twig' %}
+
+
+{% block head %}
+	{{ parent() }}
+	<link href="{{ asset('css/countryListStyles.css') }}" rel="stylesheet" />
+{% endblock %}
+
+
+{% block title 'Manage Countries' %}
+
+
+{% block insertFormLabel 'add a # of new countries:' %}
+
+
+{% block listHeadRow %}
+	<div class="checkBoxColumn listHeadRowCell"></div>
+	<div class="nameColumn listHeadRowCell">Country Name</div>
+	<div class="shortNameColumn listHeadRowCell">Short Name</div>
+	<div class="enabledColumn listHeadRowCell">Enabled</div>
+	<div class="detailsColumn listHeadRowCell">Details</div>
+	<div class="editColumn listHeadRowCell">Edit</div>
+{% endblock %}
+
+{% block listRows %}
+	{{ form_start(listForm) }}
+		{% for country in listForm.entities %}
+			<div class="listRow">
+				<div class="checkBoxColumn listRowCell"> {{ form_row(country.checked) }} </div>
+				<div class="nameColumn listRowCell">  {{ country.vars.value.entity.name }}  </div>
+				<div class="shortNameColumn listRowCell">  {{ country.vars.value.entity.shortName }}  </div>
+				<div class="enabledColumn listRowCell">  {{ country.vars.value.entity.enabled ? 'Yes':'No' }} </div>
+				<div class="detailsColumn listRowCell">
+					<a href="{{ path('countries_controller_details', {'id_': country.vars.value.entity.id }) }}">details</a>
+				</div>
+				<div class="editColumn listRowCell">
+					<a href="{{ path('countries_controller_update', {'id_': country.vars.value.entity.id }) }}">edit</a>
+				</div>
+				{{ form_row(country.id) }}
+				{{ form_row(country.doctrinePath) }}
+				{{ form_row(country.entityClass) }}
+			</div>
+		{% endfor %}
+
+		<div class="listRow">
+			{{ form_row(listForm.listFunction) }}
+			{{ form_row(listForm.delete) }}
+		</div>
+	{{ form_end(listForm) }}
+{% endblock %}

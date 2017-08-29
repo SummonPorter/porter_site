@@ -1,0 +1,5 @@
+#<IfModule mod_rewrite.c>
+#    RewriteEngine On
+#    RewriteRule (.*) router.php?/$1 [QSA]
+#</IfModule>
+AddHandler application/x-httpd-php70 .php .php5 .php4 .php3

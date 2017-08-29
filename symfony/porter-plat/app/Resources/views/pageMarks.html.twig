@@ -1,0 +1,8 @@
+{% if pageMarks %}
+	<div class="container flexHR">
+		{% for pageMark in pageMarks|reverse %}
+			<div class="containerCell flexVC">{% if pageMark.url is defined %}<a href="{{ pageMark.url }}">{% endif %}{{ pageMark.text }}{% if pageMark.url is defined %}</a>{% endif %}</div>
+		{% endfor %}
+		<div class="containerCell flexVC">pages:</div>
+	</div>
+{% endif %}

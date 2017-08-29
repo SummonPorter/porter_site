@@ -1,0 +1,211 @@
+body {
+    padding: 0;
+    margin: 0;
+	background-color: #FFF;
+	font-family: Verdana;
+}
+
+#sysHeaderBar {
+	display: flex;
+	display: -webkit-flex;
+	flex-direction: row;
+	-webkit-flex-direction: row;
+	align-content: stretch;
+	-webkit-align-content: stretch;
+	justify-content: space-between;
+	-webkit-justify-content: space-between;
+	align-items: center;
+	-webkit-align-items: center;
+
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-bottom: 50px;
+	min-width: 100%;
+	float: left;
+	background-color: #333;
+	color: #FFF;
+	font-size: 14px;
+}
+
+#sysHeaderBarManagement {
+	display: none;
+	flex-direction: row;
+	-webkit-flex-direction: row;
+	align-content: stretch;
+	-webkit-align-content: stretch;
+	justify-content: space-between;
+	-webkit-justify-content: space-between;
+	align-items: center;
+	-webkit-align-items: center;
+
+	border-top: 1px solid #FFB485;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	min-width: 100%;
+	float: left;
+	background-color: #444;
+	color: #FFF;
+	font-size: 14px;
+}
+
+#sysHeaderBarCMS {
+	display: none;
+	flex-direction: row;
+	-webkit-flex-direction: row;
+	align-content: stretch;
+	-webkit-align-content: stretch;
+	justify-content: space-between;
+	-webkit-justify-content: space-between;
+	align-items: center;
+	-webkit-align-items: center;
+
+	border-top: 1px solid #FFED85;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	min-width: 100%;
+	float: left;
+	background-color: #444;
+	color: #FFF;
+	font-size: 14px;
+}
+
+#sysHeaderBar a:link, #sysHeaderBar a:visited, #sysHeaderBar a:hover, #sysHeaderBar a:active {
+	color: #FFF;
+}
+
+#sysHeaderBarManagement a:link, #sysHeaderBarManagement a:visited, #sysHeaderBarManagement a:hover, #sysHeaderBarManagement a:active {
+	color: #DDD;
+	text-decoration: none;
+}
+
+#sysHeaderBarCMS a:link, #sysHeaderBarCMS a:visited, #sysHeaderBarCMS a:hover, #sysHeaderBarCMS a:active {
+	color: #DDD;
+	text-decoration: none;
+}
+
+.sysHeaderCell {
+	display: flex;
+	display: -webkit-flex;
+	flex-direction: row;
+	-webkit-flex-direction: row;
+	align-content: stretch;
+	-webkit-align-content: stretch;
+	justify-content: flex-start;
+	-webkit-justify-content: flex-start;
+	align-items: center;
+	-webkit-align-items: center;
+}
+
+.sysHeaderCell:nth-of-type(n+2) {
+	margin-left: 25px;
+}
+
+#sysHeaderBar > .sysHeaderCell:first-of-type {
+	margin-left: 25px;
+}
+
+#sysHeaderBar > .sysHeaderCell:last-of-type {
+	margin-right: 25px;
+}
+
+#sysHeaderBarManagement > .sysHeaderCell:first-of-type {
+	margin-left: 25px;
+}
+
+#sysHeaderBarManagement > .sysHeaderCell:last-of-type {
+	margin-right: 25px;
+}
+
+#sysHeaderBarCMS > .sysHeaderCell:first-of-type {
+	margin-left: 25px;
+}
+
+#sysHeaderBarCMS > .sysHeaderCell:last-of-type {
+	margin-right: 25px;
+}
+
+.sysHeaderCellDivider {
+	color: #999;
+}
+
+#sysHeaderCellManagement, #sysHeaderCellManagement a:link, #sysHeaderCellManagement a:visited, #sysHeaderCellManagement a:hover, #sysHeaderCellManagement a:active {
+	color: #FFB485;
+	text-decoration: none;
+}
+
+#sysHeaderCellCMS, #sysHeaderCellCMS a:link, #sysHeaderCellCMS a:visited, #sysHeaderCellCMS a:hover, #sysHeaderCellCMS a:active {
+	color: #FFED85;
+	text-decoration: none;
+}
+
+#pageContentWrapper {
+	padding-top: 25px;
+	padding-bottom: 25px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#pageContent {
+	min-width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.container {
+	min-width: 900px;
+	width: 100%;
+	float: left;
+}
+
+.flexHR {
+	display: flex;
+	display: -webkit-flex;
+	flex-direction: row-reverse;
+	-webkit-flex-direction: row-reverse;
+	align-content: stretch;
+	-webkit-align-content: stretch;
+}
+
+.flexVC {
+	display: flex;
+	display: -webkit-flex;
+	flex-direction: row;
+	-webkit-flex-direction: row;
+	align-items: center;
+	-webkit-align-items: center;
+}
+
+.container:nth-of-type(n+2) {
+	margin-top: 25px;
+}
+
+.containerCell {
+	background-color: #999;
+	font-size: 13px;
+	color: #FFF;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	text-align: center;
+	overflow: hidden;
+}
+
+.containerCell:first-of-type {
+	padding-right: 5px;
+}
+
+.containerCell a:link {
+	color: #FFF;
+}
+
+.containerCell a:visited {
+	color: #FFF;
+}
+
+.containerCell a:hover {
+	color: #FFF;
+}
+
+.containerCell a:active {
+	color: #FFF;
+}

@@ -1,0 +1,52 @@
+{% extends 'baseSysListView.html.twig' %}
+
+
+{% block head %}
+	{{ parent() }}
+	<link href="{{ asset('css/serviceGroupListStyles.css') }}" rel="stylesheet" />
+{% endblock %}
+
+
+{% block title 'Manage Service Groups' %}
+
+
+{% block insertFormLabel 'add a # of new service groups:' %}
+
+
+{% block listHeadRow %}
+	<div class="checkBoxColumn listHeadRowCell"></div>
+	<div class="nameColumn listHeadRowCell">Service Name</div>
+	<div class="webImageColumn listHeadRowCell">Web Image URL</div>
+	<div class="appImageColumn listHeadRowCell">App Image URL</div>
+	<div class="enabledColumn listHeadRowCell">Enabled</div>
+	<div class="detailsColumn listHeadRowCell">Details</div>
+	<div class="editColumn listHeadRowCell">Edit</div>
+{% endblock %}
+
+{% block listRows %}
+	{{ form_start(listForm) }}
+		{% for serviceGroup in listForm.entities %}
+			<div class="listRow">
+				<div class="checkBoxColumn listRowCell">  {{ form_row(serviceGroup.checked) }}  </div>
+				<div class="nameColumn listRowCell">  {{ serviceGroup.vars.value.entity.name }}  </div>
+				<div class="webImageColumn listRowCell">  {{ serviceGroup.vars.value.entity.webImage }}  </div>
+				<div class="appImageColumn listRowCell">  {{ serviceGroup.vars.value.entity.appImage }}  </div>
+				<div class="enabledColumn listRowCell">  {{ serviceGroup.vars.value.entity.enabled ? 'Yes':'No' }}  </div>
+				<div class="detailsColumn listRowCell">
+					<a href="{{ path('serviceGroups_controller_details', {'id_': serviceGroup.vars.value.entity.id }) }}">details</a>
+				</div>
+				<div class="editColumn listRowCell">
+					<a href="{{ path('serviceGroups_controller_update', {'id_': serviceGroup.vars.value.entity.id }) }}">edit</a>
+				</div>
+				{{ form_row(serviceGroup.id) }}
+				{{ form_row(serviceGroup.doctrinePath) }}
+				{{ form_row(serviceGroup.entityClass) }}
+			</div>
+		{% endfor %}
+
+		<div class="listRow">
+			{{ form_row(listForm.listFunction) }}
+			{{ form_row(listForm.delete) }}
+		</div>
+	{{ form_end(listForm) }}
+{% endblock %}

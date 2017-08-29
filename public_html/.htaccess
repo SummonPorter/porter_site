@@ -1,0 +1,14 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    RewriteBase /
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule development/(.*) development/router.php?/$1 [L,QSA,NC]
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule (?!development)(.*) router.php?/$1 [L,QSA,NC]
+
+</IfModule>
+
+AddHandler application/x-httpd-php70 .php .php5 .php4 .php3

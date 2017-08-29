@@ -1,0 +1,66 @@
+{% extends 'baseSysFullView.html.twig' %}
+
+
+{% block title 'Regions Details' %}
+
+
+{% block content %}
+		
+	<div class="boxContainer">
+		<div class="boxHeader">Region # {{ region.id }}</div>
+
+		<div class="boxContentContainer">
+
+			<div class="boxContentHeader">Details</div>
+			<div class="boxContentGroup">
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Type:</div>
+					<div class="boxContentGroupCellValue">  {{ region.typeName }}  </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Name:</div>
+					<div class="boxContentGroupCellValue">  {{ region.name }}  </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Short Name:</div>
+					<div class="boxContentGroupCellValue">  {{ region.shortName }}  </div>
+				</div>
+			</div>
+
+			<div class="boxContentHeader">Location</div>
+			<div class="boxContentGroup">
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Country:</div>
+					<div class="boxContentGroupCellValue">
+						{% if region.country is defined %}
+							<a href="{{ path('countries_controller_details', {'id_': region.country.id }) }}">  {{ region.country.name }}  </a>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+
+			<div class="boxContentHeader">Taxes</div>
+			<div class="boxContentGroup">
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Request Tax:</div>
+					<div class="boxContentGroupCellValue">  {{ region.requestTax|number_format(2, '.', ',') }}  </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Porter Tax:</div>
+					<div class="boxContentGroupCellValue">  {{ region.porterTax|number_format(2, '.', ',') }}  </div>
+				</div>
+			</div>
+
+			<div class="boxContentHeader">Misc</div>
+			<div class="boxContentGroup">
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Enabled:</div>
+					<div class="boxContentGroupCellValue">  {{ region.enabled ? 'Yes':'No' }}  </div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+{% endblock %}

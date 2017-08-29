@@ -1,0 +1,1 @@
+[21-Nov-2016 15:23:29 CST6CDT] PHP Fatal error:  Default value for parameters with a class type hint can only be NULL in /home/pocketpo/symfony/porter-plat/src/AppBundle/Entity/RequestProcess.php on line 25

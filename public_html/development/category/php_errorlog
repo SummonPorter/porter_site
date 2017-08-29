@@ -1,0 +1,57 @@
+[31-Oct-2016 19:00:41 CST6CDT] PHP Parse error:  syntax error, unexpected ':' in /home/pocketpo/public_html/category/index.php on line 32
+[03-Nov-2016 02:48:27 CST6CDT] PHP Parse error:  syntax error, unexpected '<' in /home/pocketpo/public_html/category/index.php on line 19
+[01-Dec-2016 21:46:28 CST6CDT] PHP Fatal error:  Uncaught Error: Call to undefined function makeUrl() in /home/pocketpo/public_html/development/snippets/footer.php:30
+Stack trace:
+#0 /home/pocketpo/public_html/development/category/index.php(104): include()
+#1 {main}
+  thrown in /home/pocketpo/public_html/development/snippets/footer.php on line 30
+[01-Dec-2016 21:46:48 CST6CDT] PHP Fatal error:  Uncaught Error: Call to undefined function makeUrl() in /home/pocketpo/public_html/development/snippets/footer.php:30
+Stack trace:
+#0 /home/pocketpo/public_html/development/category/index.php(104): include()
+#1 {main}
+  thrown in /home/pocketpo/public_html/development/snippets/footer.php on line 30
+[01-Dec-2016 21:52:19 CST6CDT] PHP Fatal error:  Uncaught Error: Call to undefined function makeUrl() in /home/pocketpo/public_html/development/snippets/footer.php:30
+Stack trace:
+#0 /home/pocketpo/public_html/development/category/index.php(104): include()
+#1 {main}
+  thrown in /home/pocketpo/public_html/development/snippets/footer.php on line 30
+[01-Dec-2016 21:52:28 CST6CDT] PHP Fatal error:  Uncaught Error: Call to undefined function makeUrl() in /home/pocketpo/public_html/development/snippets/footer.php:30
+Stack trace:
+#0 /home/pocketpo/public_html/development/category/index.php(104): include()
+#1 {main}
+  thrown in /home/pocketpo/public_html/development/snippets/footer.php on line 30
+[01-Dec-2016 21:52:34 CST6CDT] PHP Fatal error:  Uncaught Error: Call to undefined function makeUrl() in /home/pocketpo/public_html/development/snippets/footer.php:30
+Stack trace:
+#0 /home/pocketpo/public_html/development/category/index.php(104): include()
+#1 {main}
+  thrown in /home/pocketpo/public_html/development/snippets/footer.php on line 30
+[01-Dec-2016 21:52:35 CST6CDT] PHP Fatal error:  Uncaught Error: Call to undefined function makeUrl() in /home/pocketpo/public_html/development/snippets/footer.php:30
+Stack trace:
+#0 /home/pocketpo/public_html/development/category/index.php(104): include()
+#1 {main}
+  thrown in /home/pocketpo/public_html/development/snippets/footer.php on line 30
+[01-Dec-2016 21:52:46 CST6CDT] PHP Fatal error:  Uncaught Error: Call to undefined function makeUrl() in /home/pocketpo/public_html/development/snippets/footer.php:30
+Stack trace:
+#0 /home/pocketpo/public_html/development/category/index.php(104): include()
+#1 {main}
+  thrown in /home/pocketpo/public_html/development/snippets/footer.php on line 30
+[01-Dec-2016 21:53:36 CST6CDT] PHP Fatal error:  Uncaught Error: Call to undefined function makeUrl() in /home/pocketpo/public_html/development/snippets/footer.php:30
+Stack trace:
+#0 /home/pocketpo/public_html/development/category/index.php(104): include()
+#1 {main}
+  thrown in /home/pocketpo/public_html/development/snippets/footer.php on line 30
+[01-Dec-2016 21:53:44 CST6CDT] PHP Fatal error:  Uncaught Error: Call to undefined function makeUrl() in /home/pocketpo/public_html/development/snippets/footer.php:30
+Stack trace:
+#0 /home/pocketpo/public_html/development/category/index.php(104): include()
+#1 {main}
+  thrown in /home/pocketpo/public_html/development/snippets/footer.php on line 30
+[01-Dec-2016 21:54:15 CST6CDT] PHP Fatal error:  Uncaught Error: Call to undefined function makeUrl() in /home/pocketpo/public_html/development/snippets/footer.php:30
+Stack trace:
+#0 /home/pocketpo/public_html/development/category/index.php(104): include()
+#1 {main}
+  thrown in /home/pocketpo/public_html/development/snippets/footer.php on line 30
+[01-Dec-2016 21:54:19 CST6CDT] PHP Fatal error:  Uncaught Error: Call to undefined function makeUrl() in /home/pocketpo/public_html/development/snippets/footer.php:30
+Stack trace:
+#0 /home/pocketpo/public_html/development/category/index.php(104): include()
+#1 {main}
+  thrown in /home/pocketpo/public_html/development/snippets/footer.php on line 30

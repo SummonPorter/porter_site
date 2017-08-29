@@ -1,0 +1,50 @@
+{% extends 'baseSysFullView.html.twig' %}
+
+
+{% block title 'Service Group Details' %}
+
+
+{% block content %}
+		
+	<div class="boxContainer">
+		<div class="boxHeader">Service Group # {{ serviceGroup.id }}</div>
+
+		<div class="boxContentContainer">
+
+			<div class="boxContentHeader">Details</div>
+			<div class="boxContentGroup">
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Name:</div>
+					<div class="boxContentGroupCellValue">  {{ serviceGroup.name }}  </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Description:</div>
+					<div class="boxContentGroupCellValue">  {{ serviceGroup.description }}  </div>
+				</div>
+			</div>
+			
+			<div class="boxContentHeader">Images</div>
+			<div class="boxContentGroup">
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Web Image URL:</div>
+					<div class="boxContentGroupCellValue">  {{ serviceGroup.webImage }}  </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">App Image URL:</div>
+					<div class="boxContentGroupCellValue">  {{ serviceGroup.appImage }}  </div>
+				</div>
+			</div>
+
+			<div class="boxContentHeader">Misc</div>
+			<div class="boxContentGroup">
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Enabled:</div>
+					<div class="boxContentGroupCellValue">  {{ serviceGroup.enabled ? 'Yes':'No' }}  </div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+{% endblock %}

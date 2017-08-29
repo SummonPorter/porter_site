@@ -1,0 +1,69 @@
+{% extends 'baseSysFullView.html.twig' %}
+
+
+{% block title 'Add Regions' %}
+
+
+{% block boxContainers %}
+	{{ form_start(listForm) }}
+
+		{% for region in listForm.entities %}
+			{{ form_row(region.id) }}
+
+			<div class="boxContainer">
+				<div class="boxHeader">New Region</div>
+
+				<div class="boxContentContainer">
+
+					<div class="boxContentHeader">Details</div>
+					<div class="boxContentGroup">
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Type:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(region.typeName, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Name:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(region.name, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Short Name:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(region.shortName, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+					</div>
+
+					<div class="boxContentHeader">Location</div>
+					<div class="boxContentGroup">
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Country:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(region.country, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+					</div>
+
+					<div class="boxContentHeader">Taxes</div>
+					<div class="boxContentGroup">
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Request Tax:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(region.requestTax, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Porter Tax:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(region.porterTax, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+					</div>
+
+					<div class="boxContentHeader">Misc</div>
+					<div class="boxContentGroup">
+						<div class="boxContentGroupCell">
+							<div class="boxContentGroupCellLabel">Enabled:</div>
+							<div class="boxContentGroupCellValue">  {{ form_row(region.enabled, {'attr': {'class': 'formElement'}}) }} </div>
+						</div>
+					</div>
+					
+				</div>
+
+			</div>
+
+		{% endfor %}
+	{{ form_row(listForm.listFunction) }}
+	{{ form_end(listForm) }}
+{% endblock %}

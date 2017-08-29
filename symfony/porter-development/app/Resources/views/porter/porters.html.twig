@@ -1,0 +1,56 @@
+{% extends 'baseSysListView.html.twig' %}
+
+
+{% block head %}
+	{{ parent() }}
+	<link href="{{ asset('css/porterListStyles.css') }}" rel="stylesheet" />
+{% endblock %}
+
+
+{% block title 'Manage Porters' %}
+
+
+{% block insertFormLabel 'signup a # of new porters:' %}
+
+
+{% block listHeadRow %}
+	<div class="checkBoxColumn listHeadRowCell"></div>
+	<div class="firstNameColumn listHeadRowCell">First Name</div>
+	<div class="lastNameColumn listHeadRowCell">Last Name</div>
+	<div class="cityColumn listHeadRowCell">City</div>
+	<div class="mobileColumn listHeadRowCell">Mobile Phone</div>
+	<div class="emailColumn listHeadRowCell">Email</div>
+	<div class="detailsColumn listHeadRowCell">Details</div>
+	<div class="editColumn listHeadRowCell">Edit</div>
+{% endblock %}
+
+{% block listRows %}
+	{{ form_start(listForm) }}
+		{% for porter in listForm.entities %}
+
+			<div class="listRow">
+				<div class="checkBoxColumn listRowCell"> {{ form_row(porter.checked) }} </div>
+				<div class="firstNameColumn listRowCell">  {{ porter.vars.value.entity.firstName }}  </div>
+				<div class="lastNameColumn listRowCell">  {{ porter.vars.value.entity.lastName }}  </div>
+				<div class="cityColumn listRowCell">  {{ porter.vars.value.entity.city.nameAndDetails }}  </div>
+				<div class="mobileColumn listRowCell">  {{ porter.vars.value.entity.mobilePhone }}  </div>
+				<div class="emailColumn listRowCell">  {{ porter.vars.value.entity.email }}  </div>
+				<div class="detailsColumn listRowCell">
+					<a href="{{ path('porters_controller_details', {'id_': porter.id.vars.value }) }}">details</a>
+				</div>
+				<div class="editColumn listRowCell">
+					<a href="{{ path('porters_controller_update', {'id_': porter.id.vars.value }) }}">edit</a>
+				</div>
+				{{ form_row(porter.id) }}
+				{{ form_row(porter.doctrinePath) }}
+				{{ form_row(porter.entityClass) }}
+			</div>
+
+		{% endfor %}
+
+		<div class="listRow">
+			{{ form_row(listForm.listFunction) }}
+			{{ form_row(listForm.delete) }}
+		</div>
+	{{ form_end(listForm) }}
+{% endblock %}

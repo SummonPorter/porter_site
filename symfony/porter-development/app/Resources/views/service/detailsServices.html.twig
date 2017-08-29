@@ -1,0 +1,98 @@
+{% extends 'baseSysFullView.html.twig' %}
+
+
+{% block title 'Service Details' %}
+
+
+{% block content %}
+		
+	<div class="boxContainer">
+		<div class="boxHeader">Service # {{ service.id }}</div>
+
+		<div class="boxContentContainer">
+
+			<div class="boxContentHeader">Details</div>
+			<div class="boxContentGroup">
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Name:</div>
+					<div class="boxContentGroupCellValue">  {{ service.name }}  </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Description:</div>
+					<div class="boxContentGroupCellValue">  {{ service.description }}  </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Address Count:</div>
+					<div class="boxContentGroupCellValue">  {{ service.addressCount }}  </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Service Group:</div>
+					<div class="boxContentGroupCellValue">
+						{% if service.group is not null %}
+							{{ service.group.name }}
+						{% endif %}
+					</div>
+				</div>
+			</div>
+
+			<div class="boxContentHeader">Money</div>
+			<div class="boxContentGroup">
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Fee Rate:</div>
+					<div class="boxContentGroupCellValue">  {{ service.feeRate }}  </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Fee:</div>
+					<div class="boxContentGroupCellValue">  ${{ service.fee|number_format(2, '.', ',') }} CAD  </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Base Fee:</div>
+					<div class="boxContentGroupCellValue">  ${{ service.baseFee|number_format(2, '.', ',') }} CAD  </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Porter Pay:</div>
+					<div class="boxContentGroupCellValue">  ${{ service.pay|number_format(2, '.', ',') }} CAD  </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Trust Fee (percentage):</div>
+					<div class="boxContentGroupCellValue">  {{ service.trustFee|number_format(3, '.', ',') }}%  </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Default Estimated Duration:</div>
+					<div class="boxContentGroupCellValue">  {{ service.pay }}  </div>
+				</div>
+			</div>
+
+			<div class="boxContentHeader">Images</div>
+			<div class="boxContentGroup">
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Web Header URL:</div>
+					<div class="boxContentGroupCellValue">  {{ service.webHeader }}  </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Web Mobile Header URL:</div>
+					<div class="boxContentGroupCellValue">  {{ service.webMobileHeader }}  </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Web Icon URL:</div>
+					<div class="boxContentGroupCellValue">  {{ service.webIcon }}  </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">App Image URL:</div>
+					<div class="boxContentGroupCellValue">  {{ service.appImage }}  </div>
+				</div>
+			</div>
+
+			<div class="boxContentHeader">Misc</div>
+			<div class="boxContentGroup">
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Enabled:</div>
+					<div class="boxContentGroupCellValue">  {{ service.enabled ? 'Yes':'No' }}  </div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+{% endblock %}

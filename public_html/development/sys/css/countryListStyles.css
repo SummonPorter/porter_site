@@ -1,0 +1,1 @@
+.checkBoxColumn{min-width:30px;width:30px}.nameColumn{min-width:100px;width:52%}.shortNameColumn{min-width:100px;width:25%}.enabledColumn{min-width:70px;width:18%}.detailsColumn,.editColumn{min-width:70px;width:2.5%}.formElement{margin:0;padding:0;min-width:80px;width:-moz-calc(100% - 20px);width:-webkit-calc(100% - 20px);width:-o-calc(100% - 20px);width:calc(100% - 20px)}

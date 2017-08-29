@@ -1,0 +1,4 @@
+[02-Dec-2016 01:09:18 CST6CDT] PHP Fatal error:  Uncaught Error: Call to undefined function incl() in /home/pocketpo/public_html/development/become-a-porter/index.php:11
+Stack trace:
+#0 {main}
+  thrown in /home/pocketpo/public_html/development/become-a-porter/index.php on line 11

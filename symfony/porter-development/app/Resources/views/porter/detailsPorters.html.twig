@@ -1,0 +1,114 @@
+{% extends 'baseSysFullView.html.twig' %}
+
+
+{% block title 'Porter Details' %}
+
+
+{% block content %}
+
+	<div class="boxContainer">
+		<div class="boxHeader">Porter Profile # {{ porter.id }}</div>
+
+		<div class="boxContentContainer">
+
+			<div class="boxContentHeader">Bio</div>
+			<div class="boxContentGroup">
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">First Name:</div>
+					<div class="boxContentGroupCellValue">  {{ porter.firstName }}  </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Last Name:</div>
+					<div class="boxContentGroupCellValue">  {{ porter.lastName }}  </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Date of Birth:</div>
+					<div class="boxContentGroupCellValue">  {{ porter.birthDateString }}  </div>
+				</div>
+			</div>
+
+			<div class="boxContentHeader">Contact</div>
+			<div class="boxContentGroup">
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Cell Phone:</div>
+					<div class="boxContentGroupCellValue">  {{ porter.mobilePhone }}  </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Home Phone:</div>
+					<div class="boxContentGroupCellValue">  {{ porter.homePhone }}  </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Email:</div>
+					<div class="boxContentGroupCellValue">  {{ porter.email }}  </div>
+				</div>
+			</div>
+
+			<div class="boxContentHeader">Location</div>
+			<div class="boxContentGroup">
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">City:</div>
+					<div class="boxContentGroupCellValue">  {{ porter.city.getNameAndDetails }}  </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Address:</div>
+					<div class="boxContentGroupCellValue">  {{ porter.address }}  </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Mailing:</div>
+					<div class="boxContentGroupCellValue">  {{ porter.mailing }}  </div>
+				</div>
+			</div>
+
+			{% for vehicle in porter.vehicles %}
+				<div class="boxContentHeader">Vehicle Access</div>
+				<div class="boxContentGroup">
+					<div class="boxContentGroupCell">
+						<div class="boxContentGroupCellLabel">  Vehicle Type  </div>
+						<div class="boxContentGroupCellValue">  {{ vehicle.vehicleType }} </div>
+					</div>
+					<div class="boxContentGroupCell">
+						<div class="boxContentGroupCellLabel">  Personal Vehicle  </div>
+						<div class="boxContentGroupCellValue">  {{ vehicle.personal ? 'Yes':'No' }} </div>
+					</div>
+				</div>
+			{% endfor %}
+
+			<div class="boxContentHeader">Misc</div>
+			<div class="boxContentGroup">
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Background Ref:</div>
+					<div class="boxContentGroupCellValue">  {{ porter.backgroundRef }}  </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Signup Date:</div>
+					<div class="boxContentGroupCellValue">  {{ porter.signupEpochString }}  </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Active:</div>
+					<div class="boxContentGroupCellValue">  {{ porter.active ? 'Yes':'No'  }}  </div>
+				</div>
+			</div>
+
+			{% if porter.serviceInterestGrades %}
+
+				<div class="boxContentHeader">Service Interests</div>
+				<div class="boxContentGroup">
+
+				{% for interest in porter.serviceInterestGrades %}
+					
+					<div class="boxContentGroupCell">
+						<div class="boxContentGroupCellLabel">  {{ interest.service.name }}  </div>
+						<div class="boxContentGroupCellValue">  {{ interest.readableInterestGrade }}  </div>
+					</div>
+					
+				{% endfor %}
+
+				</div>
+				
+			{% endif %}
+
+		</div>
+
+	</div>
+
+{% endblock %}

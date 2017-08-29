@@ -1,0 +1,44 @@
+.checkBoxColumn {
+	min-width: 30px;
+	width: 30px;
+}
+
+.codeColumn {
+	min-width: 80px;
+	width: 17%;
+}
+
+.nameColumn {
+	min-width: 80px;
+	width: 22%;
+}
+
+.startDateTimeColumn {
+	min-width: 90px;
+	width: 15%;
+}
+
+.endDateTimeColumn {
+	min-width: 90px;
+	width: 15%;
+}
+
+.discountColumn {
+	min-width: 80px;
+	width: 10%;
+}
+
+.configColumn {
+	min-width: 100px;
+	width: 16%;
+}
+
+.detailsColumn {
+	min-width: 70px;
+	width: 2.5%;
+}
+
+.editColumn {
+	min-width: 70px;
+	width: 2.5%;
+}

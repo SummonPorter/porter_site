@@ -1,0 +1,2 @@
+[03-Dec-2016 12:18:22 CST6CDT] PHP Parse error:  syntax error, unexpected ':', expecting ';' or '{' in /home/pocketpo/symfony/porter-development/src/AppBundle/Controller/CmsController.php on line 61
+[05-Dec-2016 16:02:34 CST6CDT] PHP Parse error:  syntax error, unexpected ':', expecting ';' or '{' in /home/pocketpo/symfony/porter-development/src/AppBundle/Controller/CmsController.php on line 61

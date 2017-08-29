@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+			<meta charset="UTF-8">
+			<link href="{{ asset('css/porterRequestStyles.css') }}" rel="stylesheet" />
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<title>Porter Job Portal</title>
+	</head>
+
+	<body>
+		<div id="pageContentWrapper">
+			<div id="pageContent">
+
+				{% if request is null or porter is null %}
+
+					<div class="container">
+						<div class="header">This job is gone.</div>
+						<div class="help-text">The job you were looking for has either been completed or removed from our system. If you have just completed a job, this is message is to be expected. If you are seeing this and think there has been an error, please contact your operations manager.</div>
+					</div>
+
+				{% elseif request is not null and porter is not null %}
+
+					{% if startActivity is null or endActivity is null %}
+
+						{% if claimed == false %}
+							<div class="container">
+								<div class="header">Request Information</div>
+								<div class="line">
+									<div class="header">Location:</div>
+									<div class="body">
+										{% if request.repCity is not null %}
+											{{ request.repCity.nameAndDetails }}
+										{% endif %}
+									</div>
+								</div>
+								<div class="line">
+									<div class="header">Job Type:</div>
+									<div class="body">
+										{% if request.service is not null %}
+											{{ request.service.name }}
+										{% endif %}
+									</div>
+								</div>
+								<div class="line">
+									<div class="header">Start Time &amp; Date:</div>
+									<div class="body">
+										{{ request.requestStartDateTime|date('l jS g:ia, F, Y') }}
+									</div>
+								</div>
+								<div class="line">
+									<div class="header">Estimated Duration:</div>
+									<div class="body">
+										{{ request.estDuration }} Minutes
+									</div>
+								</div>
+								<div class="line">
+									<div class="header">Estimated Pay:</div>
+									<div class="body">
+										${{ porterPay|number_format(2, '.', ',') }} CAD
+									</div>
+								</div>
+								<div class="line">
+									<div class="header">Spots Available:</div>
+									<div class="body">
+										{{ request.assignedPorterCount }}/{{ request.portersWanted }}
+									</div>
+								</div>
+								{% if goTime == true %}
+									<div class="line">
+										<div class="header">State:</div>
+										<div class="body">Already Started</div>
+									</div>
+								{% else %}
+									{% if available == true %}
+										<div class="line">
+											<div class="header">State:</div>
+											<div class="body">Available</div>
+										</div>
+									{% else %}
+										<div class="line">
+											<div class="header">State:</div>
+											<div class="body">Unavailable</div>
+										</div>
+									{% endif %}
+								{% endif %}
+							</div>
+
+							{% if goTime == true %}
+								<div class="container">
+									<div class="header">Job Already Started</div>
+									<div class="help-text">Sorry but this job has already started and is therefore no longer available to be claimed.</div>
+								</div>
+							{% else %}
+								{% if available == true %}
+									<div class="container">
+										<div class="header">Take the Job</div>
+										<div class="help-text">If you are serious about taking this this job, click on the button below. But be quick, other Porters are looking to claim this job too.</div>
+										<a href="{{ path('internal_services_requests', {'requestToken_': requestToken, 'porterToken_': porterToken, 'action_': 'take' }) }}" class="button take-button">Take This Job</a>
+									</div>
+								{% else %}
+									<div class="container">
+										<div class="header">Job Unavailable</div>
+										<div class="help-text">You can try checking back later, but at the moment his job has already been claimed by one or more fellow Porters!</div>
+									</div>
+								{% endif %}
+							{% endif %}
+						{% else %}
+							<div class="container">
+								<div class="header">Request Information</div>
+									<div class="line">
+										<div class="header">Location:</div>
+										<div class="body">
+											{% if request.repCity is not null %}
+												{{ request.repCity.nameAndDetails }}
+											{% endif %}
+										</div>
+									</div>
+									<div class="line">
+										<div class="header">Job Type:</div>
+										<div class="body">
+											{% if request.service is not null %}
+												{{ request.service.name }}
+											{% endif %}
+										</div>
+									</div>
+									<div class="line">
+										<div class="header">Start Time &amp; Date:</div>
+										<div class="body">
+											{{ request.requestStartDateTime|date('l jS g:ia, F, Y') }}
+										</div>
+									</div>
+									<div class="line">
+										<div class="header">Estimated Duration:</div>
+										<div class="body">
+											{{ request.estDuration }} Minutes
+										</div>
+									</div>
+									<div class="line">
+										<div class="header">Estimated Pay:</div>
+										<div class="body">
+											${{ porterPay|number_format(2, '.', ',') }} CAD
+										</div>
+									</div>
+									<div class="line">
+										<div class="header">Spots Available:</div>
+										<div class="body">
+											{{ request.assignedPorterCount }}/{{ request.portersWanted }}
+										</div>
+									</div>
+									<div class="line">
+										<div class="header">State:</div>
+										<div class="body"><b>Accepted</b></div>
+									</div>
+								</div>
+
+							{% if goWindow == true %}
+
+								<div class="container">
+									<div class="header">Request Details</div>
+									{% for address in request.addresses %}
+										<div class="line">
+												<div class="header">
+													{% if address.unit is not null %}
+														{{ address.context }} Address:
+													{% else %}
+														Address:
+													{% endif %}
+												</div>
+												<div class="body">
+													{{ address.address }}
+													{% if address.unit is not null %}
+														{% if address.unit|length %}
+															<br>Unit: {{ address.unit }}
+														{% endif %}
+													{% endif %}
+												</div>
+										</div>
+									{% endfor %}
+									<div class="line">
+										<div class="header">Details:</div>
+										<div class="body">
+											{{ request.details }}
+										</div>
+									</div>
+									<div class="line">
+										<div class="header">Customer Name:</div>
+										<div class="body">
+											{% if request.customer is not null %}
+												{{ request.customer.firstName }} {{ request.customer.lastName }}
+											{% endif %}
+										</div>
+									</div>
+									<div class="line">
+										<div class="header">Customer Phone Number:</div>
+										<div class="body">
+											{% if request.customer is not null %}
+												{{ request.customer.mobilePhone }}
+											{% endif %}
+										</div>
+									</div>
+								</div>
+
+								{% if startActivity is null %}
+									<div class="container">
+										<div class="header">Start the Job</div>
+										<div class="help-text">Press the start button <b>only when you begin the actual job.</b> Your start and end times determine the customer's bill. If you accidently press the button early or late, please contact your operations manager.</div>
+										<a href="{{ path('internal_services_requests', {'requestToken_': requestToken, 'porterToken_': porterToken, 'action_': 'start' }) }}" class="button start-button">Start This Job</a>
+									</div>
+								{% endif %}
+								{% if startActivity is not null and endActivity is null %}
+									<div class="container">
+										<div class="header">Complete the Job</div>
+										<div class="help-text">Press the complete button <b>immediately after finishing the job.</b> Your start and completion times determine the customer's bill. If you accidently press the button early or late, please contact your operations manager.</div>
+										<a href="{{ path('internal_services_requests', {'requestToken_': requestToken, 'porterToken_': porterToken, 'action_': 'end' }) }}" class="button end-button">Complete This Job</a>
+									</div>
+								{% endif %}
+
+							{% else %}
+
+								<div class="container">
+									<div class="header">Request Details</div>
+									<div class="line">
+										<div class="header">Not Yet Available:</div>
+										<div class="body">Refresh this page 24 hours before the job's specified start time to get the final details on the job.</div>
+									</div>
+								</div>
+
+								<div class="container">
+									<div class="header">Surrender the Job</div>
+									<div class="help-text">If you don't think you'll be able to complete the job, or arrive on time, then please surrender this job to another Porter.</div>
+									<a href="{{ path('internal_services_requests', {'requestToken_': requestToken, 'porterToken_': porterToken, 'action_': 'give' }) }}" class="button surrender-button">Surrender This Job</a>
+								</div>
+
+							{% endif %}
+
+						{% endif %}
+
+					{% else %}
+
+						<div class="container">
+							<div class="header">Job Completed!</div>
+							<div class="help-text">You have successfully completed the job. Your operations manager will be in contact soon.</div>
+						</div>
+
+					{% endif %}
+
+				{% endif %}
+
+			</div>
+		</div>
+	</body>
+
+</html>

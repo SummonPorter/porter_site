@@ -1,0 +1,156 @@
+{% extends 'baseSysView.html.twig' %}
+
+
+{% block head %}
+	{{ parent() }}
+	<link href="{{ asset('css/boxStyles.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block title 'Request Details' %}
+
+
+{% block headerBar %}
+	{% include 'sysHeaderBar.html.twig'%}
+{% endblock %}
+
+
+{% block content %}
+
+	<div class="container">
+		
+		<div class="boxContainer">
+			<div class="boxHeader">Request # {{ request.id }}</div>
+
+			<div class="boxContentContainer">
+
+				<div class="boxContentHeader">Details</div>
+				<div class="boxContentGroup">
+					<div class="boxContentGroupCell">
+						<div class="boxContentGroupCellLabel">Service:</div>
+						<div class="boxContentGroupCellValue">
+							{% if request.service is not null %}
+								<a href="{{ path('services_controller_details', {'id_': request.service.id }) }}">  {{ request.service.name }}  </a>
+							{% endif %}
+						</div>
+					</div>
+					<div class="boxContentGroupCell">
+						<div class="boxContentGroupCellLabel">Request Date:</div>
+						<div class="boxContentGroupCellValue">  {{ request.requestEpochString }}  </div>
+					</div>
+					<div class="boxContentGroupCell">
+						<div class="boxContentGroupCellLabel">Start Date:</div>
+						<div class="boxContentGroupCellValue">  {{ request.requestStartEpochString }}  </div>
+					</div>
+					<div class="boxContentGroupCell">
+						<div class="boxContentGroupCellLabel">Estimated Duration:</div>
+						<div class="boxContentGroupCellValue">  {{ request.estDuration }} minutes  </div>
+					</div>
+					<div class="boxContentGroupCell">
+						<div class="boxContentGroupCellLabel">Request State:</div>
+						<div class="boxContentGroupCellValue">  {{ request.requestState }}  </div>
+					</div>
+					<div class="boxContentGroupCell">
+						<div class="boxContentGroupCellLabel">Porters Requested:</div>
+						<div class="boxContentGroupCellValue">  {{ request.portersWanted }}  </div>
+					</div>
+				</div>
+
+				<div class="boxContentHeader">Porters</div>
+				<div class="boxContentGroup">
+					<div class="boxContentGroupCell">
+						<div class="boxContentGroupCellLabel">Porter 1:</div>
+						<div class="boxContentGroupCellValue"></div>
+					</div>
+					<div class="boxContentGroupCell">
+						<div class="boxContentGroupCellLabel">Porter 2:</div>
+						<div class="boxContentGroupCellValue"></div>
+					</div>
+				</div>
+
+				<div class="boxContentHeader">Time & Money</div>
+				<div class="boxContentGroup">
+					<div class="boxContentGroupCell">
+						<div class="boxContentGroupCellLabel">Actual Start Time:</div>
+						<div class="boxContentGroupCellValue">  {{ request.porterStartEpochString }}  </div>
+					</div>
+					<div class="boxContentGroupCell">
+						<div class="boxContentGroupCellLabel">Actual End Time:</div>
+						<div class="boxContentGroupCellValue">  {{ request.porterEndEpochString }}  </div>
+					</div>
+					<div class="boxContentGroupCell">
+						<div class="boxContentGroupCellLabel">Actual Duration:</div>
+						<div class="boxContentGroupCellValue">  {{ request.porterDurationInMin }} minutes </div>
+					</div>
+					<div class="boxContentGroupCell">
+						<div class="boxContentGroupCellLabel">Discount:</div>
+						<div class="boxContentGroupCellValue">
+							{% if request.discount is not null %}
+								<a href="{{ path('discounts_controller_details', {'id_': request.discount.id }) }}">  {{ request.discount.name }}  </a>
+							{% endif %}
+						</div>
+					</div>
+					<div class="boxContentGroupCell">
+						<div class="boxContentGroupCellLabel">Total Billing:</div>
+						<div class="boxContentGroupCellValue">  ${{ request.totalBilling|number_format(2, '.', ',') }} CAD </div>
+					</div>
+				</div>
+
+				<div class="boxContentHeader">Customer</div>
+				<div class="boxContentGroup">
+					<div class="boxContentGroupCell">
+						<div class="boxContentGroupCellLabel">Customer Name:</div>
+						<div class="boxContentGroupCellValue"></div>
+					</div>
+					<div class="boxContentGroupCell">
+						<div class="boxContentGroupCellLabel">Email:</div>
+						<div class="boxContentGroupCellValue"></div>
+					</div>
+					<div class="boxContentGroupCell">
+						<div class="boxContentGroupCellLabel">Contact Number:</div>
+						<div class="boxContentGroupCellValue"></div>
+					</div>
+					<div class="boxContentGroupCell">
+						<div class="boxContentGroupCellLabel">City:</div>
+						<div class="boxContentGroupCellValue"></div>
+					</div>
+					<div class="boxContentGroupCell">
+						<div class="boxContentGroupCellLabel">Address:</div>
+						<div class="boxContentGroupCellValue"></div>
+					</div>
+					<div class="boxContentGroupCell">
+						<div class="boxContentGroupCellLabel">Mailing:</div>
+						<div class="boxContentGroupCellValue"></div>
+					</div>
+					<div class="boxContentGroupCell">
+						<div class="boxContentGroupCellLabel">Credit Token:</div>
+						<div class="boxContentGroupCellValue"></div>
+					</div>
+				</div>
+
+				<div class="boxContentHeader">Directions</div>
+				<div class="boxContentGroup">
+					<div class="boxContentGroupCell">
+						<div class="boxContentGroupCellLabel">Details:</div>
+						<div class="boxContentGroupCellValue">  {{ request.details }}  </div>
+					</div>
+					<div class="boxContentGroupCell">
+						<div class="boxContentGroupCellLabel">City:</div>
+						<div class="boxContentGroupCellValue">
+							{% if request.city is not null %}
+								{{ request.city.nameAndDetails }}
+							{% endif %}
+						</div>
+					</div>
+					<div class="boxContentGroupCell">
+						<div class="boxContentGroupCellLabel">Address:</div>
+						<div class="boxContentGroupCellValue">  {{ request.address }}  </div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+{% endblock %}

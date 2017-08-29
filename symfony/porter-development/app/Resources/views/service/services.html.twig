@@ -1,0 +1,63 @@
+{% extends 'baseSysListView.html.twig' %}
+
+
+{% block head %}
+	{{ parent() }}
+	<link href="{{ asset('css/serviceListStyles.css') }}" rel="stylesheet" />
+{% endblock %}
+
+
+{% block title 'Manage Services' %}
+
+
+{% block insertFormLabel 'add a # of new services:' %}
+
+
+{% block listHeadRow %}
+	<div class="checkBoxColumn listHeadRowCell"></div>
+	<div class="nameColumn listHeadRowCell">Service Name</div>
+	<div class="feeRateColumn listHeadRowCell">Fee Rate</div>
+	<div class="feeColumn listHeadRowCell">Fee</div>
+	<div class="baseFeeColumn listHeadRowCell">Base Fee</div>
+	<div class="porterPayColumn listHeadRowCell">Porter Pay</div>
+	<div class="groupColumn listHeadRowCell">Group</div>
+	<div class="enabledColumn listHeadRowCell">Enabled</div>
+	<div class="detailsColumn listHeadRowCell">Details</div>
+	<div class="editColumn listHeadRowCell">Edit</div>
+{% endblock %}
+
+
+{% block listRows %}
+	{{ form_start(listForm) }}
+		{% for service in listForm.entities %}
+			<div class="listRow">
+				<div class="checkBoxColumn listRowCell"> {{ form_row(service.checked) }} </div>
+				<div class="nameColumn listRowCell">  {{ service.vars.value.entity.name }}  </div>
+				<div class="feeRateColumn listRowCell">  {{ service.vars.value.entity.feeRate }}  </div>
+				<div class="feeColumn listRowCell">  ${{ service.vars.value.entity.fee|number_format(2, '.', ',') }} CAD  </div>
+				<div class="baseFeeColumn listRowCell">  ${{ service.vars.value.entity.baseFee|number_format(2, '.', ',') }} CAD  </div>
+				<div class="porterPayColumn listRowCell">  ${{ service.vars.value.entity.pay|number_format(2, '.', ',') }} CAD  </div>
+				<div class="groupColumn listRowCell">
+					{% if service.vars.value.entity.group is not null %}
+						{{ service.vars.value.entity.group.name }}
+					{% endif %}
+				</div>
+				<div class="enabledColumn listRowCell">  {{ service.vars.value.entity.enabled ? 'Yes':'No' }}  </div>
+				<div class="detailsColumn listRowCell">
+					<a href="{{ path('services_controller_details', {'id_': service.vars.value.entity.id }) }}">details</a>
+				</div>
+				<div class="editColumn listRowCell">
+					<a href="{{ path('services_controller_update', {'id_': service.vars.value.entity.id }) }}">edit</a>
+				</div>
+				{{ form_row(service.id) }}
+				{{ form_row(service.doctrinePath) }}
+				{{ form_row(service.entityClass) }}
+			</div>
+		{% endfor %}
+
+		<div class="listRow">
+			{{ form_row(listForm.listFunction) }}
+			{{ form_row(listForm.delete) }}
+		</div>
+	{{ form_end(listForm) }}
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'baseSysFullView.html.twig' %}
+
+
+{% block title 'Country Details' %}
+
+
+{% block content %}
+		
+	<div class="boxContainer">
+		<div class="boxHeader">Country # {{ country.id }}</div>
+
+		<div class="boxContentContainer">
+
+			<div class="boxContentHeader">Details</div>
+			<div class="boxContentGroup">
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Name:</div>
+					<div class="boxContentGroupCellValue">  {{ country.name }}  </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Short Name:</div>
+					<div class="boxContentGroupCellValue">  {{ country.shortName }}  </div>
+				</div>
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Currency Code:</div>
+					<div class="boxContentGroupCellValue">  {{ country.currencyCode }}  </div>
+				</div>
+			</div>
+
+			<div class="boxContentHeader">Misc</div>
+			<div class="boxContentGroup">
+				<div class="boxContentGroupCell">
+					<div class="boxContentGroupCellLabel">Enabled:</div>
+					<div class="boxContentGroupCellValue">  {{ country.enabled ? 'Yes':'No' }}  </div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+{% endblock %}

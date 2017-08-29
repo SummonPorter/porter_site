@@ -1,0 +1,38 @@
+
+<div id="sysHeaderBar">
+	<div class="sysHeaderCell">
+		<div id="sysHeaderCellManagement" class="sysHeaderCell"><b><a href="#" onclick="displayManagement()">Management</a></b></div>
+		<div id="sysHeaderCellCMS" class="sysHeaderCell"><b><a href="#" onclick="displayCMS()">CMS</a></b></div>
+	</div>
+	{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+		<div class="sysHeaderCell">
+			<div class="sysHeaderCell">Welcome, {{ app.user.username }}</div>
+			<div class="sysHeaderCell"><a href="{{ path('logout') }}">logout</a></div>
+		</div>
+	{% endif %}
+</div>
+
+<div id="sysHeaderBarManagement">
+	<div class="sysHeaderCell">
+		<div class="sysHeaderCell"><a href="{{ path('porters_controller_main') }}">Porters</a></div>
+		<div class="sysHeaderCell"><a href="#">Payroll</a></div>
+		<div class="sysHeaderCell sysHeaderCellDivider">|</div>
+		<div class="sysHeaderCell"><a href="{{ path('requests_controller_main', {'filter_': 'new' }) }}">New Requests</a></div>
+		<div class="sysHeaderCell"><a href="{{ path('requests_controller_main', {'filter_': 'active' }) }}">Active Requests</a></div>
+		<div class="sysHeaderCell"><a href="{{ path('requests_controller_main', {'filter_': 'worked' }) }}">Worked Requests</a></div>
+		<div class="sysHeaderCell"><a href="{{ path('requests_controller_main', {'filter_': 'complete' }) }}">Completed Requests</a></div>
+	</div>
+</div>
+
+<div id="sysHeaderBarCMS">
+	<div class="sysHeaderCell">
+		<div class="sysHeaderCell"><a href="{{ path('discounts_controller_main') }}">Discounts</a></div>
+		<div class="sysHeaderCell sysHeaderCellDivider">|</div>
+		<div class="sysHeaderCell"><a href="{{ path('serviceGroups_controller_main') }}">Service Groups</a></div>
+		<div class="sysHeaderCell"><a href="{{ path('services_controller_main') }}">Services</a></div>
+		<div class="sysHeaderCell sysHeaderCellDivider">|</div>
+		<div class="sysHeaderCell"><a href="{{ path('countries_controller_main') }}">Countries</a></div>
+		<div class="sysHeaderCell"><a href="{{ path('regions_controller_main') }}">Regions</a></div>
+		<div class="sysHeaderCell"><a href="{{ path('cities_controller_main') }}">Cities</a></div>
+	</div>
+</div>
